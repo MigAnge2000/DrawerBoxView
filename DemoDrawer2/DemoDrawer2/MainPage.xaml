@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="DemoDrawer2.MainPage"
+             xmlns:custom="clr-namespace:DemoDrawer2.CustomComponent"
+             BackgroundImageSource="arb.jpg">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <RelativeLayout Grid.Row="0">
+            <StackLayout Margin="10,50,10,10" >
+                <Label FontAttributes="Bold" TextColor="Red">Tecnología</Label>
+                <Label>
+                    Innovación tecnológica incremental
+                </Label>
+            
+                <Label TextColor="Red">
+                    La innovación tecnológica es el proceso mediante el cual una empresa crea un nuevo producto, servicio, proceso o modelo de negocio, o bien mejora significativamente las características de uno ya existente, utilizando como vehículo las herramientas tecnológicas. Este es un concepto que puede englobar diversas acciones y es por ello que se puede diferenciar cuatro tipos de innovación tecnológica: la incremental, la disruptiva, la sostenible y la radical
+                </Label>
+            </StackLayout>
+            <Grid x:Name="bottomSheet" RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.93,Constant=0}"
+                  RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width,Factor=1,Constant=0}"
+                   RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height,Factor=1,Constant=0}">
+                <Grid.GestureRecognizers>
+                    <PanGestureRecognizer PanUpdated="PanGestureRecognizer_PanUpdated"></PanGestureRecognizer>
+                </Grid.GestureRecognizers>
+                
+                <OnPlatform x:TypeArguments="View">
+                    <On Platform="iOS">
+                        <custom:CustomBoxView CornerRadius="20"  Margin="0,0,0,0" BackgroundColor="White" ShadowColor="Black" ShadowOpacity="1" ShadowRadius="8" OffsetX="0" OffsetY="2">
+
+                        </custom:CustomBoxView>
+                    </On>
+                    <On Platform="Android">
+                        <custom:CustomFrame CornerRadius="20"  Margin="0,0,0,0" BackgroundColor="White">
+
+                        </custom:CustomFrame>
+                    </On>
+                </OnPlatform>
+                
+                <StackLayout Spacing="5" x:Name="bottomsheetStack" Margin="0,20,0,0">
+                    
+                    <BoxView HeightRequest="5" CornerRadius="2" WidthRequest="50" BackgroundColor="Gray" HorizontalOptions="Center"></BoxView>
+                  
+                    <ListView  VerticalOptions="Fill" HorizontalOptions="FillAndExpand"
+                      HasUnevenRows="true" Margin="0,20,0,0" x:Name="bottomsheetListView" VerticalScrollBarVisibility="Never"
+                      >
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Grid Padding="10">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="*" />
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <Image Grid.RowSpan="2"
+                                       
+                                       Aspect="AspectFill"
+                                       HeightRequest="60"
+                                       WidthRequest="60" />
+                                        <Label Grid.Column="1"
+                                      
+                                               TextColor="DarkBlue"
+                                       FontAttributes="Bold" />
+                                        <Label Grid.Row="1"
+                                       Grid.Column="1"
+                                      
+                                       VerticalOptions="End" />
+                                    </Grid>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    </StackLayout>
+            </Grid>
+        </RelativeLayout>
+    </Grid>
+
+</ContentPage>
